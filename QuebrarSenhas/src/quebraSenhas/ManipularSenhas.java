@@ -9,18 +9,24 @@ public class ManipularSenhas {
 
 	public List<String> listarPossibilidadesNumericas(){
 		List<String> lista = new ArrayList<String>();
-		for (long i = 0; i < 99999; i++){
-			String a = Long.toString(i);
+		char[] todos = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q',
+				'r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'};
+		char[] s = new char[5];
+		String a = "";
+		int count = 1;
+		for (int i = 0; i < todos.length; i++){
+			while (count <= 5){
+				a += todos[i];
+				count++;
+			}
 			lista.add(a);
+			count = 1;
 		}
-		return lista;
-	}
-	
-	public List<String> listarPossibilidadesAlfabeticas(){
-		List<String> lista = new ArrayList<String>();
-		for (int i = 65; i < 91; i++) {
-			char a = i;
-			lista.add(String.valueOf(a));
+			for (int j = 0; j < s.length; j++){
+				s[j] = todos[i];
+				String senha = new String(s);
+				lista.add(senha);
+			}
 		}
 		return lista;
 	}
