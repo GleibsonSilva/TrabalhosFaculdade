@@ -24,6 +24,7 @@ public class Inicio {
 			if (manipular.comparar(candidata, md5)){
 				System.out.println("Senha " + md5 + "encontrada!\n");
 				System.out.println("Senha: " + aux + "\n");
+				candidata = md5;
 			} else {
 				aux = "";
 				candidata = "";
