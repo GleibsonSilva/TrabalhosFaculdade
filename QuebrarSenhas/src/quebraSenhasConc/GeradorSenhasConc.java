@@ -14,18 +14,16 @@ public class GeradorSenhasConc implements Runnable{
 
 	private static void quebrarSenha(String md5){
 		ManipulaSenhasConc manipular = new ManipulaSenhasConc();
-		String candidata = "";
-		String aux = "";
-		while (!manipular.comparar(candidata, md5)){
-			aux = manipular.gerarSenha();
-			candidata = manipular.criarMD5(aux);
-			if (manipular.comparar(candidata, md5)){
-				System.out.println("Senha " + md5 + "encontrada!\n");
+		boolean achou = false;
+		while (!achou){
+			String aux = manipular.gerarSenha();
+			String candidata = manipular.criarMD5(aux);
+			if (candidata == md5){
+				System.out.println(md5 + " encontrada!\n");
 				System.out.println("Senha: " + aux + "\n");
-				candidata = md5;
+				achou = true;
 			} else {
-				aux = "";
-				candidata = "";
+				achou = false;
 			}
 		}
 	}

@@ -8,8 +8,8 @@ public class InicioConc {
 		String senha3 = "c77aeec24015ad7e6e0b1db9d9deed68";
 		
 		iniciarContarTempo(senha1);
-		iniciarContarTempo(senha2);
-		iniciarContarTempo(senha3);
+//		iniciarContarTempo(senha2);
+//		iniciarContarTempo(senha3);
 	}
 
 	public static void iniciarContarTempo(String senha){
