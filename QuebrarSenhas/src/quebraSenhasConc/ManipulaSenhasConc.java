@@ -1,11 +1,10 @@
-package quebraSenhas;
+package quebraSenhasConc;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.*;
 
-public class ManipularSenhas {
+public class ManipulaSenhasConc {
 
 	public String gerarSenha(){
 		char[] letras = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q',

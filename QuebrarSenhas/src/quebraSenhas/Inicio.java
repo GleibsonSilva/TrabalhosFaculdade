@@ -1,29 +1,41 @@
 package quebraSenhas;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Inicio {
 
+	private static ManipularSenhas manipular = new ManipularSenhas();
+	
 	public static void main(String[] args) {
-
-		List<String> lista = new ArrayList<String>();
-		char[] letras = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q',
-				'r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'};
-		int aleatorio;
+		String senha1 = "";
+		String senha2 = "";
+		String senha3 = "";
 		
-		for(int i = 1; i <= 5; i++){
-			aleatorio = (int) (Math.random() * (letras.length) );
-			String senha = String.valueOf(letras[aleatorio]);
-			while (lista.size() < 36){
-				if (!lista.contains(senha)){
-					lista.add(senha);
-				}
-			}
-		}
-		for (String i : lista){
-			System.out.println(i);
-		}
+		contadorTempo(senha1);
+		contadorTempo(senha2);
+		contadorTempo(senha3);
+
 	}
 
+	public static void quebrarSenha(String md5){
+		String candidata = "";
+		String aux = "";
+		while (!manipular.comparar(candidata, md5)){
+			aux = manipular.gerarSenha();
+			candidata = manipular.criarMD5(aux);
+			if (manipular.comparar(candidata, md5)){
+				System.out.println("Senha " + md5 + "encontrada!\n");
+				System.out.println("Senha: " + aux + "\n");
+			} else {
+				aux = "";
+				candidata = "";
+			}
+		}
+	}
+	
+	public static void contadorTempo(String md5){
+		long ini = System.currentTimeMillis();
+		quebrarSenha(md5);
+		long fim = System.currentTimeMillis();
+		long tempo = (fim - ini) / 1000;
+		System.out.println("Tempo: " + tempo + "s");
+	}
 }
