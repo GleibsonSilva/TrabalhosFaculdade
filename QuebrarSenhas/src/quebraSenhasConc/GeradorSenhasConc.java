@@ -1,31 +1,31 @@
 package quebraSenhasConc;
 
-import java.util.List;
-
 public class GeradorSenhasConc implements Runnable{
 	private String senha;
-	private List<String> lista;
 	
-	public GeradorSenhasConc(String senha, List<String> lista){
+	public GeradorSenhasConc(String senha){
 		this.senha = senha;
-		this.lista = lista;
 	}
 	
 	@Override
 	public void run() {
-		quebrarSenha(senha, lista);
+		quebrarSenha(senha);
 	}
 
-	private static void quebrarSenha(String md5, List<String> lista){
+	private static void quebrarSenha(String md5){
 		ManipulaSenhasConc manipular = new ManipulaSenhasConc();
-		for (String s : lista) {
-			String candidata = manipular.criarMD5(s);
-			if (candidata == md5) {
+		boolean achou = false;
+		System.out.println("Procurando...");
+		while (!achou){
+			String aux = manipular.gerarSenha();
+			String candidata = manipular.criarMD5(aux);
+			if (candidata == md5){
 				System.out.println(md5 + " encontrada!\n");
-				System.out.println("Senha: " + s + "\n");
-				break;
+				System.out.println("Senha: " + aux + "\n");
+				achou = true;
+			} else {
+				achou = false;
 			}
 		}
-		System.out.println("Não encontrada!");
 	}
 }
