@@ -1,28 +1,33 @@
 package quebraSenhasConc;
 
+import java.util.*;
+
 public class InicioConc {
 
 	public static void main(String[] args) {
 		String senha1 = "17a0a00212dde12b063af7dc22fdf02b";
 		String senha2 = "75abfe3020804dd73a2a6040da9df96c";
 		String senha3 = "c77aeec24015ad7e6e0b1db9d9deed68";
+
+		ManipulaSenhasConc m = new ManipulaSenhasConc();
+		List<String> listaS = m.listarSenhas();
 		
-		instanciarThreads(senha1);
-		instanciarThreads(senha3);
-		instanciarThreads(senha2);
+		instanciarThreads(senha1, listaS);
+		instanciarThreads(senha3, listaS);
+		instanciarThreads(senha2, listaS);
 	}
 
-	public static void instanciarThreads(String senha){
-		Thread t1 = new Thread(new GeradorSenhasConc(senha));
-		Thread t2 = new Thread(new GeradorSenhasConc(senha));
-		Thread t3 = new Thread(new GeradorSenhasConc(senha));
-		Thread t4 = new Thread(new GeradorSenhasConc(senha));
-		Thread t5 = new Thread(new GeradorSenhasConc(senha));
-		Thread t6 = new Thread(new GeradorSenhasConc(senha));
-		Thread t7 = new Thread(new GeradorSenhasConc(senha));
-		Thread t8 = new Thread(new GeradorSenhasConc(senha));
-		Thread t9 = new Thread(new GeradorSenhasConc(senha));
-		Thread t10 = new Thread(new GeradorSenhasConc(senha));
+	public static void instanciarThreads(String senha, List<String> lista){
+		Thread t1 = new Thread(new GeradorSenhasConc(senha, lista));
+		Thread t2 = new Thread(new GeradorSenhasConc(senha, lista));
+		Thread t3 = new Thread(new GeradorSenhasConc(senha, lista));
+		Thread t4 = new Thread(new GeradorSenhasConc(senha, lista));
+		Thread t5 = new Thread(new GeradorSenhasConc(senha, lista));
+		Thread t6 = new Thread(new GeradorSenhasConc(senha, lista));
+		Thread t7 = new Thread(new GeradorSenhasConc(senha, lista));
+		Thread t8 = new Thread(new GeradorSenhasConc(senha, lista));
+		Thread t9 = new Thread(new GeradorSenhasConc(senha, lista));
+		Thread t10 = new Thread(new GeradorSenhasConc(senha, lista));
 		
 		iniciarTempoThreads(t1,t2,t3,t4,t5,t6,t7,t8,t9,t10);
 	}
@@ -98,7 +103,6 @@ public class InicioConc {
 		long tempo = (fim - ini) / 1000;
 		System.out.println("Tempo: " + tempo + "s");
 	}
-	
 	
 	public static void interromperTodas(Thread t1, Thread t2, Thread t3, Thread t4, Thread t5, Thread t6, 
 			Thread t7, Thread t8, Thread t9){

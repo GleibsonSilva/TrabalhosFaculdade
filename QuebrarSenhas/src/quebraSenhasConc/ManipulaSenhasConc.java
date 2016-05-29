@@ -3,6 +3,8 @@ package quebraSenhasConc;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ManipulaSenhasConc {
 
@@ -18,6 +20,21 @@ public class ManipulaSenhasConc {
 			senha = String.valueOf(linha);
 		}
 		return senha;
+	}
+	
+	public List<String> listarSenhas(){
+		List<String> lista = new ArrayList<String>();
+		long count = 0;
+		while (count < 376992) {
+			String senha = gerarSenha();
+			if (!lista.contains(senha)) {
+				lista.add(senha);
+				count++;
+			}else{
+				senha = "";
+			}
+		}
+		return lista;
 	}
 	
 	public String criarMD5(String senha){

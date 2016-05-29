@@ -21,6 +21,21 @@ public class ManipularSenhas {
 		return senha;
 	}
 	
+	public List<String> listarSenhas(){
+		List<String> lista = new ArrayList<String>();
+		long count = 0;
+		while (count < 376992) {
+			String senha = gerarSenha();
+			if (!lista.contains(senha)) {
+				lista.add(senha);
+				count++;
+			}else{
+				senha = "";
+			}
+		}
+		return lista;
+	}
+	
 	public String criarMD5(String senha){
 		String sen = "";
 		MessageDigest md = null;
@@ -34,3 +49,4 @@ public class ManipularSenhas {
 		return sen;
 	}
 }
+//376992
