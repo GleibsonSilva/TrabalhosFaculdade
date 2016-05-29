@@ -7,12 +7,12 @@ public class InicioConc {
 		String senha2 = "75abfe3020804dd73a2a6040da9df96c";
 		String senha3 = "c77aeec24015ad7e6e0b1db9d9deed68";
 		
-		iniciarContarTempo(senha1);
-//		iniciarContarTempo(senha2);
-//		iniciarContarTempo(senha3);
+		instanciarThreads(senha1);
+		instanciarThreads(senha3);
+		instanciarThreads(senha2);
 	}
 
-	public static void iniciarContarTempo(String senha){
+	public static void instanciarThreads(String senha){
 		Thread t1 = new Thread(new GeradorSenhasConc(senha));
 		Thread t2 = new Thread(new GeradorSenhasConc(senha));
 		Thread t3 = new Thread(new GeradorSenhasConc(senha));
@@ -24,15 +24,12 @@ public class InicioConc {
 		Thread t9 = new Thread(new GeradorSenhasConc(senha));
 		Thread t10 = new Thread(new GeradorSenhasConc(senha));
 		
-		long ini = System.currentTimeMillis();
-		iniciarVerificarThreads(t1,t2,t3,t4,t5,t6,t7,t8,t9,t10);
-		long fim = System.currentTimeMillis();
-		long tempo = (fim - ini) / 1000;
-		System.out.println("Tempo: " + tempo + "s");
+		iniciarTempoThreads(t1,t2,t3,t4,t5,t6,t7,t8,t9,t10);
 	}
 	
-	public static void iniciarVerificarThreads(Thread t1, Thread t2, Thread t3, Thread t4, Thread t5, Thread t6, 
+	public static void iniciarTempoThreads(Thread t1, Thread t2, Thread t3, Thread t4, Thread t5, Thread t6, 
 			Thread t7, Thread t8, Thread t9, Thread t10){
+		long ini = System.currentTimeMillis();
 		t1.start();
 		t2.start();
 		t3.start();
@@ -43,27 +40,65 @@ public class InicioConc {
 		t8.start();
 		t9.start();
 		t10.start();
-		if (!t1.isAlive())
-			interromperTodas(t2, t3, t4, t5, t6, t7, t8, t9, t10);
-		else if (!t2.isAlive())
-			interromperTodas(t1, t3, t4, t5, t6, t7, t8, t9, t10);
-		else if (!t3.isAlive())
-			interromperTodas(t1, t2, t4, t5, t6, t7, t8, t9, t10);
-		else if (!t4.isAlive())
-			interromperTodas(t1, t2, t3, t5, t6, t7, t8, t9, t10);
-		else if (!t5.isAlive())
-			interromperTodas(t1, t2, t3, t4, t6, t7, t8, t9, t10);
-		else if (!t6.isAlive())
-			interromperTodas(t1, t2, t3, t4, t5, t7, t8, t9, t10);
-		else if (!t7.isAlive())
-			interromperTodas(t1, t2, t3, t4, t5, t6, t8, t9, t10);
-		else if (!t8.isAlive())
-			interromperTodas(t1, t2, t3, t4, t5, t6, t7, t9, t10);
-		else if (!t9.isAlive())
-			interromperTodas(t1, t2, t3, t4, t5, t6, t7, t8, t10);
-		else if (!t10.isAlive())
-			interromperTodas(t1, t2, t3, t4, t5, t6, t7, t8, t9);
+		boolean achou = false;
+		while (!achou){
+			if (!t1.isAlive()) {
+				interromperTodas(t2, t3, t4, t5, t6, t7, t8, t9, t10);
+				achou = true;
+			} else {
+				if (!t2.isAlive()) {
+					interromperTodas(t1, t3, t4, t5, t6, t7, t8, t9, t10);
+					achou = true;
+				} else {
+					if (!t3.isAlive()) {
+						interromperTodas(t1, t2, t4, t5, t6, t7, t8, t9, t10);
+						achou = true;
+					} else {
+						if (!t4.isAlive()) {
+							interromperTodas(t1, t2, t3, t5, t6, t7, t8, t9, t10);
+							achou = true;
+						} else {
+							if (!t5.isAlive()) {
+								interromperTodas(t1, t2, t3, t4, t6, t7, t8, t9, t10);
+								achou = true;
+							} else {
+								if (!t6.isAlive()) {
+									interromperTodas(t1, t2, t3, t4, t5, t7, t8, t9, t10);
+									achou = true;
+								} else {
+									if (!t7.isAlive()) {
+										interromperTodas(t1, t2, t3, t4, t5, t6, t8, t9, t10);
+										achou = true;
+									} else {
+										if (!t8.isAlive()) {
+											interromperTodas(t1, t2, t3, t4, t5, t6, t7, t9, t10);
+											achou = true;
+										} else {
+											if (!t9.isAlive()) {
+												interromperTodas(t1, t2, t3, t4, t5, t6, t7, t8, t10);
+												achou = true;
+											} else {
+												if (!t10.isAlive()) {
+													interromperTodas(t1, t2, t3, t4, t5, t6, t7, t8, t9);
+													achou = true;
+												} else {
+													achou = false;
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		long fim = System.currentTimeMillis();
+		long tempo = (fim - ini) / 1000;
+		System.out.println("Tempo: " + tempo + "s");
 	}
+	
 	
 	public static void interromperTodas(Thread t1, Thread t2, Thread t3, Thread t4, Thread t5, Thread t6, 
 			Thread t7, Thread t8, Thread t9){

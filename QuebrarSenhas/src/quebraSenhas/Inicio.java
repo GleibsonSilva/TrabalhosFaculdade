@@ -10,9 +10,17 @@ public class Inicio {
 		String senha3 = "c77aeec24015ad7e6e0b1db9d9deed68";
 		
 		contadorTempo(senha1);
-//		contadorTempo(senha2);
-//		contadorTempo(senha3);
+		contadorTempo(senha2);
+		contadorTempo(senha3);
 
+	}
+	
+	public static void contadorTempo(String md5){
+		long ini = System.currentTimeMillis();
+		quebrarSenha(md5);
+		long fim = System.currentTimeMillis();
+		long tempo = (fim - ini) / 1000;
+		System.out.println("Tempo: " + tempo + "s");
 	}
 
 	public static void quebrarSenha(String md5){
@@ -28,14 +36,6 @@ public class Inicio {
 				achou = false;
 			}
 		}
-	}
-	
-	public static void contadorTempo(String md5){
-		long ini = System.currentTimeMillis();
-		quebrarSenha(md5);
-		long fim = System.currentTimeMillis();
-		long tempo = (fim - ini) / 1000;
-		System.out.println("Tempo: " + tempo + "s");
 	}
 }
 //376992
