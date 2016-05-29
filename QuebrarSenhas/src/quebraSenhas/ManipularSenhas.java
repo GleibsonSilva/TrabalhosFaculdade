@@ -24,7 +24,7 @@ public class ManipularSenhas {
 	public List<String> listarSenhas(){
 		List<String> lista = new ArrayList<String>();
 		long count = 0;
-		while (count < 376992) {
+		while (count < 45239040) {
 			String senha = gerarSenha();
 			if (!lista.contains(senha)) {
 				lista.add(senha);
